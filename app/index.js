@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const Main = React.createClass({
+class Main extends React.Component {
   render () {
     return (
       <p>Hello World!</p>
     )
   }
-})
+}
 
 ReactDOM.render(
   <Main />,
