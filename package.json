@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "Git",
-    "url": "http://localhost/not-really-a-git-url"
+    "url": "github.com:TomCharman/redux-training.git"
   },
   "scripts": {
     "start": "webpack-dev-server",

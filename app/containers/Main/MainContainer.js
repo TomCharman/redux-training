@@ -3,7 +3,7 @@ import React from 'react'
 class MainContainer extends React.Component {
   render () {
     return (
-      <p>{'Hello World!'}</p>
+      <p>{'Hello Tom!'}</p>
     )
   }
 }
