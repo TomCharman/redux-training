@@ -32,9 +32,22 @@ const base = {
     filename: 'index_bundle.js',
   },
   module: {
-    loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
-      {test: /\.css$/, loader: 'style!css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]'},
+    rules: [
+      {test: /\.js$/, exclude: /node_modules/, use: 'babel-loader'},
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            },
+          },
+        ],
+      },
     ],
   },
   resolve: {
