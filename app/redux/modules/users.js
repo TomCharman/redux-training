@@ -26,6 +26,7 @@ export function fetchingUser () {
 }
 
 export function fetchingUserFailure (error) {
+  console.warn(error)
   return {
     type: FETCHING_USER_FAILURE,
     error: 'Error fetching user.',
