@@ -8,6 +8,10 @@ import thunk from 'redux-thunk'
 
 const store = createStore(users, applyMiddleware(thunk))
 
+// function checkAuth() {
+//   console.log(arguments)
+// }
+
 ReactDOM.render(
   <Provider store={store}>
     {routes}
