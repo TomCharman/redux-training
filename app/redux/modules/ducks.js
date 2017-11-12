@@ -11,7 +11,7 @@ const ADD_DUCK = 'ADD_DUCK'
 const ADD_MULTIPLE_DUCKS = 'ADD_MULTIPLE_DUCKS'
 
 // Action creators
-function fetchingDuck() {
+function fetchingDuck () {
   return {
     type: FETCHING_DUCK,
   }
@@ -32,7 +32,7 @@ function fetchingDuckSuccess (duck) {
   }
 }
 
-function removeFetching() {
+function removeFetching () {
   return {
     type: REMOVE_FETCHING,
   }
