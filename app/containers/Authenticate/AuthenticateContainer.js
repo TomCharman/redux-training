@@ -17,7 +17,9 @@ class AuthenticateContainer extends Component {
   handleAuth = (e) => {
     e.preventDefault()
     this.props.fetchAndHandleAuthedUser()
-      .then(() => this.props.history.push('feed'))
+    // This used to redirect for us, but not needed since our routes
+    // sort this shit out for us.
+    // .then(() => this.props.history.push('feed'))
   }
 
   render = () => {
