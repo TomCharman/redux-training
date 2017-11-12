@@ -76,7 +76,7 @@ class MainContainer extends React.Component {
               condition={this.props.isAuthed}
               redirect='/auth' />
             <Route path='/logout' component={LogoutContainer} />
-            <ConditionalRoute path='/'
+            <ConditionalRoute
               component={HomeContainer}
               condition={!this.props.isAuthed}
               redirect='/feed' />
