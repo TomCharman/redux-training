@@ -1,3 +1,7 @@
+import { saveDuck } from 'helpers/api'
+import { closeModal } from './modal'
+import { addSingleUsersDuck } from './usersDucks'
+
 // Constants
 const FETCHING_DUCK = 'FETCHING_DUCK'
 const FETCHING_DUCK_ERROR = 'FETCHING_DUCK_ERROR'
@@ -38,6 +42,21 @@ function addDuck (duck) {
   return {
     type: ADD_DUCK,
     duck,
+  }
+}
+
+export function duckFanout (duck) {
+  return function (dispatch, getState) {
+    const uid = getState().users.authedId
+    saveDuck(duck)
+      .then((duckWithId) => {
+        dispatch(addDuck(duckWithId))
+        dispatch(closeModal())
+        dispatch(addSingleUsersDuck(uid, duckWithId.duckId))
+      })
+      .catch((err) => {
+        console.warn('Error in duckFanout', err)
+      })
   }
 }
 
