@@ -1,16 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import routes from './config/routes'
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose, combineReducers } from 'redux'
 import { Provider } from 'react-redux'
-import users from 'redux/modules/users'
 import thunk from 'redux-thunk'
+import * as reducers from 'redux/modules'
 
-const store = createStore(users, applyMiddleware(thunk))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-// function checkAuth() {
-//   console.log(arguments)
-// }
+const store = createStore(
+  combineReducers(reducers),
+  composeEnhancers(applyMiddleware(thunk))
+)
 
 ReactDOM.render(
   <Provider store={store}>
