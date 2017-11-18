@@ -4,4 +4,5 @@ export AuthenticateContainer from './Authenticate/AuthenticateContainer'
 export FeedContainer from './Feed/FeedContainer'
 export LogoutContainer from './Logout/LogoutContainer'
 export ModalContainer from './Modal/ModalContainer'
+export DuckContainer from './Duck/DuckContainer'
 // could replace { default as MainContainer } with MainContainer in future
