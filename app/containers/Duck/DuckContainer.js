@@ -25,12 +25,12 @@ class DuckContainer extends Component {
     hideLikeCount: true,
   }
 
-  goToProfile (e) {
+  goToProfile = (e) => {
     e.stopPropagation()
     this.props.history.push('/' + this.props.duck.uid)
   }
 
-  handleClick (e) {
+  handleClick = (e) => {
     e.stopPropagation()
     this.props.history.push('/duckDetail/' + this.props.duck.duckId)
   }
