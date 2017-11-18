@@ -9,6 +9,7 @@ import { Navigation } from 'components'
 import { container, innerContainer } from './styles.css'
 import { bindActionCreators } from 'redux'
 import * as userActionCreators from 'redux/modules/users'
+import * as usersLikesActionCreators from 'redux/modules/usersLikes'
 import { formatUserInfo } from 'helpers/utils'
 import { firebaseAuth } from 'config/constants'
 
@@ -42,6 +43,7 @@ class MainContainer extends React.Component {
     history: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
     removeFetchingUser: PropTypes.func.isRequired,
+    setUsersLikes: PropTypes.func.isRequired,
   }
 
   componentDidMount = () => {
@@ -51,6 +53,7 @@ class MainContainer extends React.Component {
         const userInfo = formatUserInfo(userData.displayName, userData.photoURL, user.uid)
         this.props.authUser(user.uid)
         this.props.fetchingUserSuccess(user.uid, userInfo, Date.now())
+        this.props.setUsersLikes()
         if (this.props.location.pathname === '/') {
           this.props.history.push('/feed')
         }
@@ -93,5 +96,8 @@ class MainContainer extends React.Component {
 
 export default connect(
   ({users}) => ({isAuthed: users.isAuthed, isFetching: users.isFetching}),
-  (dispatch) => bindActionCreators(userActionCreators, dispatch)
+  (dispatch) => bindActionCreators({
+    ...userActionCreators,
+    ...usersLikesActionCreators,
+  }, dispatch)
 )(withRouter(MainContainer))
