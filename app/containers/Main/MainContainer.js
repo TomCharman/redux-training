@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { HomeContainer, AuthenticateContainer, FeedContainer, LogoutContainer } from 'containers'
+import { HomeContainer, AuthenticateContainer, FeedContainer, LogoutContainer, UserContainer } from 'containers'
 import { Navigation } from 'components'
 // possibly want to use later with Firebase?
 // import { checkIfAuthed } from 'helpers/auth'
@@ -79,10 +79,14 @@ class MainContainer extends React.Component {
               condition={this.props.isAuthed}
               redirect='/auth' />
             <Route path='/logout' component={LogoutContainer} />
+            <ConditionalRoute path='/:uid'
+              component={UserContainer}
+              condition={this.props.isAuthed}
+              redirect='/feed' />
             <ConditionalRoute exact={true} path='/'
               component={HomeContainer}
               condition={!this.props.isAuthed}
-              redirect='/feed' />
+              redirect='/auth' />
             {/* A slightly dodgy way to redirect anything else to home / feed */}
             <ConditionalRoute
               component={HomeContainer}

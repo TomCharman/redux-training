@@ -1,3 +1,6 @@
+import { fetchUsersDucks } from 'helpers/api'
+import { addMultipleDucks } from './ducks'
+
 // Constants
 const FETCHING_USERS_DUCKS = 'FETCHING_USERS_DUCKS'
 const FETCHING_USERS_DUCKS_ERROR = 'FETCHING_USERS_DUCKS_ERROR'
@@ -34,6 +37,23 @@ export function addSingleUsersDuck (uid, duckId) {
     type: ADD_SINGLE_USERS_DUCK,
     uid,
     duckId,
+  }
+}
+
+export function fetchAndHandleUsersDucks (uid) {
+  return function (dispatch) {
+    dispatch(fetchingUsersDucks())
+
+    fetchUsersDucks(uid)
+      .then((ducks) => dispatch(addMultipleDucks(ducks)))
+      .then(({ducks}) => dispatch(
+        fetchingUsersDucksSuccess(
+          uid,
+          Object.keys(ducks).sort((a, b) => ducks[b].timestamp - ducks[a].timestamp),
+          Date.now(),
+        )
+      ))
+      .catch((error) => dispatch(fetchingUsersDucksError(error)))
   }
 }
 
