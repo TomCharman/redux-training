@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { DuckDetails } from 'components'
 import * as duckActionCreators from 'redux/modules/ducks'
 import * as likeCountActionCreators from 'redux/modules/likeCount'
+import * as repliesActionCreators from 'redux/modules/replies'
 
 class DuckDetailsContainer extends Component {
   static propTypes = {
@@ -16,6 +17,7 @@ class DuckDetailsContainer extends Component {
     removeFetching: PropTypes.func.isRequired,
     fetchAndHandleDuck: PropTypes.func.isRequired,
     initLikeFetch: PropTypes.func.isRequired,
+    addAndHandleReply: PropTypes.func.isRequired,
   }
 
   componentDidMount = () => {
@@ -30,6 +32,7 @@ class DuckDetailsContainer extends Component {
   render () {
     return (
       <DuckDetails
+        addAndHandleReply={this.props.addAndHandleReply}
         isFetching={this.props.isFetching}
         error={this.props.error}
         authedUser={this.props.authedUser}
@@ -52,6 +55,7 @@ function mapDispatchToProps (dispatch) {
   return bindActionCreators({
     ...duckActionCreators,
     ...likeCountActionCreators,
+    ...repliesActionCreators,
   }, dispatch)
 }
 
