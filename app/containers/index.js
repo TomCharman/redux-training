@@ -7,4 +7,5 @@ export ModalContainer from './Modal/ModalContainer'
 export DuckContainer from './Duck/DuckContainer'
 export DuckDetailsContainer from './DuckDetails/DuckDetailsContainer'
 export UserContainer from './User/UserContainer'
+export RepliesContainer from './Replies/RepliesContainer'
 // could replace { default as MainContainer } with MainContainer in future
